@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://artxe.github.io/css-lube/sitemap.xml
