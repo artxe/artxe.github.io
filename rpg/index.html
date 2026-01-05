@@ -113,7 +113,6 @@
 		function enhancement_cost(grade, end) {
 			let cost = 0
 			for (let i = 0; i < grade; i++) {
-				const p = end - i
 				cost += 100 / (end - i) * (1 + cost * i / 200)
 			}
 			return cost
