@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Solfa Glide</title>
+  <script>{let e=document,t=CSS.escape,r=RegExp,i=Map,o=MutationObserver,l="*{margin:0;padding:0;font:inherit;color:inherit}*,:after,:before{box-sizing:border-box;flex-shrink:0}html,body{height:100%;max-height:100%}ol,ul,menu,dir{list-style:none}img,svg,video,canvas,audio,iframe,embed,object{vertical-align:bottom;max-width:100%}button{background:none;border:0;cursor:pointer}b,strong{font-weight:bold}a{text-decoration:none}pre{white-space:pre-wrap}table{border-collapse:collapse;border-spacing:0}:root{-webkit-tap-highlight-color:transparent;text-size-adjust:100%;-webkit-text-size-adjust:100%;line-height:1.5;overflow-wrap:break-word;word-break:break-word;tab-size:4}",n=new i([["at","accent-color"],["ac","align-content"],["ai","align-items"],["as","align-self"],["a","animation"],["ar","aspect-ratio"],["bf","backdrop-filter"],["bg","background"],["bgc","background-color"],["bgi","background-image"],["bd","border"],["bdb","border-bottom"],["bblr","border-bottom-left-radius"],["bbrr","border-bottom-right-radius"],["bdc","border-color"],["bdi","border-inline"],["bdl","border-left"],["br","border-radius"],["bdr","border-right"],["bdt","border-top"],["btlr","border-top-left-radius"],["btrr","border-top-right-radius"],["b","bottom"],["bsd","box-shadow"],["bs","block-size"],["c","color"],["cq","container"],["cqn","container-name"],["cqt","container-type"],["ct","content"],["cv","content-visibility"],["cs","cursor"],["d","display"],["f","flex"],["ft","filter"],["fg","flex-grow"],["fsk","flex-shrink"],["ff","font-family"],["fs","font-size"],["fw","font-weight"],["g","gap"],["gc","grid-column"],["gr","grid-row"],["gtc","grid-template-columns"],["gtr","grid-template-rows"],["h","height"],["is","inline-size"],["i","inset"],["jc","justify-content"],["ji","justify-items"],["l","left"],["ls","letter-spacing"],["lh","line-height"],["m","margin"],["mb","margin-bottom"],["mi","margin-inline"],["ml","margin-left"],["mr","margin-right"],["mt","margin-top"],["of","object-fit"],["op","opacity"],["ol","outline"],["o","overflow"],["ox","overflow-x"],["oy","overflow-y"],["p","padding"],["pb","padding-bottom"],["pi","padding-inline"],["pl","padding-left"],["pr","padding-right"],["pt","padding-top"],["pc","place-content"],["pci","place-items"],["pe","pointer-events"],["r","right"],["ta","text-align"],["td","text-decoration"],["ts","text-shadow"],["tw","text-wrap"],["t","top"],["tf","transform"],["tt","transition"],["us","user-select"],["v","visibility"],["ws","white-space"],["w","width"],["wb","word-break"],["z","z-index"]]),a=new i([["block","display:block"],["flex","display:flex"],["grid","display:grid"],["inline","display:inline"],["none","display:none"],["column","flex-direction:column"],["column-reverse","flex-direction:column-reverse"],["row","flex-direction:row"],["row-reverse","flex-direction:row-reverse"],["nowrap","flex-wrap:nowrap"],["wrap","flex-wrap:wrap"],["isolate","isolation:isolate"],["absolute","position:absolute"],["fixed","position:fixed"],["relative","position:relative"],["static","position:static"],["sticky","position:sticky"]]),s=new i([["hover","(hover:hover)"],["sm","(min-width:640px)"],["md","(min-width:768px)"],["lg","(min-width:1024px)"],["xl","(min-width:1280px)"],["2xl","(min-width:1536px)"],["landscape","(orientation:landscape)"],["fine","(pointer:fine)"],["dark","(prefers-color-scheme:dark)"],["reduce","(prefers-reduced-motion:reduce)"]]),c=/(?:^| )-?(?:\d*\.)?\d+(?= |$)/g,d=/((?:^|;|-)(?:border|bottom|end|font-size|gap|grid-template-(?:columns|rows)|height|inset|left|(?:margin|padding)(?:-[a-z]+)*|outline|radius|right|shadow|spacing|start|top|width):)(.+?)(?=;|$)/g,p="px",g=e.createElement("style"),b=new Set,f=new Set,m="",h=r(".[:=].|"+[...a.keys()].join("|")),w=/class="([^"]+)"/g,u=/\S+/g,x=/prefers-color-scheme:dark/g,k=/&/g,v=/=/g,y=/[^ (][+-][^ ]/g,z=/calc\(.+?\)/g,j=/[^ ,]+=[^ ,]+/g,E=/&gt;/g,S=r("(^| )("+[...s.keys()].join("|")+")(?= |$)","g"),M=r("(^|/|;)("+[...n.keys()].join("|")+")(?=:)","g"),O=/_/g,$=/[: ,]--[^ ;,)]+/g,q=r("(^|/|;)("+[...a.keys()].join("|")+")(?=;|!|$)","g");click=()=>{let e=localStorage.getItem("THEME");g.textContent=l+(e?m.replace(x,"DARK"==e?"color":""):m)};let A=e=>{if(1==e.nodeType&&!f.has(e)){for(let t of f){if(t.contains(e))return;e.contains(t)&&f.delete(t)}f.add(e)}},L=e=>{let t=e[0];return"-"==t||t>="a"&&t<="z"},T=e=>{let t=0,r=0,i=0;for(let o of e)"'"==o?t++:'"'==o?r++:"("==o?i++:")"==o&&i--;return t%2||r%2||i||"\\"==e[e.length-1]},C=e=>{let r=e.indexOf("@",2),i=e.slice(1,r),o=e.slice(r+1);m+=G(i)+_(o)+".\\@"+t(i)+"\\@"+(L(o)?H:R)(o)+"}"},H=e=>t(e)+"{"+J(e)+"}",R=e=>{let r=(e=e.replace(E,">")).indexOf("/");return t(e)+e.slice(0,r).replace(O," ")+"{"+J(e.slice(r+1))+"}"},D=e=>{h.test(e)&&!T(e)&&(L(e)?l+=_(e)+"."+H(e):"@"==e[0]?C(e):l+=_(e)+"."+R(e))},F=e=>{e.classList.forEach(K)},I=e=>{let t="";for(let[,r]of e.outerHTML.matchAll(w))t+=" "+r;t.match(u)?.forEach(K)},K=e=>{b.has(e)||(b.add(e),D(e))},_=e=>{let t=e.length-1;if("!"!=e[t])return"";let r="[class]";for(;"!"==e[--t];)r+="[class]";return r},B=e=>{let t=e.indexOf("=");return"("+e.slice(0,t)+":"+e.slice(t+1)+")"},G=e=>"@"+(e="@"==e[0]?e.slice(1):"media "+e).replace(O," ").replace(k," and ").replace(j,B).replace(S,Q)+"{",J=e=>{let t=e.length;if("!"==e[--t]){for(;"!"==e[--t];);e=e.slice(0,t+1)}return e.replace(O," ").replace(v,":").replace(M,U).replace(q,X).replace(d,V).replace(z,N).replace($,Y)},N=e=>e.replace(y,P),P=e=>e[0]+" "+e[1]+" "+e[2],Q=(e,t,r)=>t+s.get(r),U=(e,t,r)=>t+n.get(r),V=(e,t,r)=>t+r.replace(c,W),W=e=>e+p,X=(e,t,r)=>t+a.get(r),Y=e=>e[0]+"var("+e.slice(1)+")";g.setAttribute("click","v1.0.0"),e.head.append(g),new o(e=>{let t=b.size;for(let t of e)f.add(t.target);for(let e of f)F(e);f.clear(),b.size!=t&&click()}).observe(e.documentElement,{attributeFilter:["class"],subtree:1}),new o(e=>{let t=b.size;for(let t of e)A(t.target);for(let e of f)I(e);f.clear(),b.size!=t&&click()}).observe(e.documentElement,{childList:1,subtree:1})}</script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body class="m=0 p=16 min-height=100vh d=grid place-items=center font-family=system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe_UI&quot;,sans-serif color=#181818 background=linear-gradient(135deg,#fff6d8,#e4f0ff)">
+  <main class="w=min(720px,100%) p=clamp(20px,4vw,36px) border-radius=28 bg=rgba(255,255,255,0.78) box-shadow=0_24px_80px_rgba(0,0,0,0.14) text-align=center backdrop-filter=blur(12px)">
+    <p class="m=0_0_14px font-size=0.78rem font-weight=800 letter-spacing=0.04em color=rgba(0,0,0,0.42)">DRAG THE CAPSULE TO SHIFT RANGE</p>
+
+    <div class="d=flex align-items=center gap=clamp(6px,2vw,12px) m=0_0_30px">
+      <button id="prevRangeBtn" type="button" aria-label="Move range left"
+        class="flex=0_0_auto d=grid place-items=center w=44 h=44 p=0 appearance=none border=0 border-radius=999px bg=rgba(255,255,255,0.94) box-shadow=0_10px_24px_rgba(0,0,0,0.12) color=#222 font-size=1.05rem font-weight=900 cursor=pointer transition=transform_120ms_ease,box-shadow_120ms_ease :hover/transform=scale(1.06) :active/transform=scale(0.94) @max-width=680px@w=40 @max-width=680px@h=40">◀</button>
+
+      <div id="track" aria-label="draggable range from C3 to C7"
+        class="position=relative flex=1_1_auto min-width=0 h=150 border-radius=999px bg=rgba(255,255,255,0.56) box-shadow=inset_0_0_0_3px_rgba(0,0,0,0.04) overflow=hidden touch-action=none cursor=grab user-select=none :active/cursor=grabbing @max-width=680px@h=140">
+        <div id="backgroundScale" aria-hidden="true"
+          class="position=absolute top=0 left=14% w=288% h=100% pointer-events=none transition=left_80ms_linear">
+          <div class="position=absolute left=0 right=0 top=50% h=4 border-radius=999px bg=rgba(0,0,0,0.12) transform=translateY(-50%)"></div>
+
+          <div style="left: 0%" class="position=absolute top=50% w=3 h=28 border-radius=999px bg=rgba(0,0,0,0.18) transform=translate(-50%,-50%)">
+            <span class="position=absolute left=50% bottom=-32px transform=translateX(-50%) font-size=0.78rem font-weight=900 color=rgba(0,0,0,0.48) white-space=nowrap @max-width=680px@bottom=-28px @max-width=680px@font-size=0.7rem">C3</span>
+          </div>
+          <div style="left: 25%" class="position=absolute top=50% w=4 h=42 border-radius=999px bg=rgba(0,0,0,0.42) transform=translate(-50%,-50%)">
+            <span class="position=absolute left=50% bottom=-48px transform=translateX(-50%) font-size=0.78rem font-weight=900 white-space=nowrap padding=5px_10px border-radius=999px bg=rgba(34,34,34,0.9) color=#fff letter-spacing=0.02em @max-width=680px@bottom=-42px @max-width=680px@font-size=0.66rem @max-width=680px@padding=4px_8px">C4 · Middle C</span>
+          </div>
+          <div style="left: 50%" class="position=absolute top=50% w=3 h=28 border-radius=999px bg=rgba(0,0,0,0.18) transform=translate(-50%,-50%)">
+            <span class="position=absolute left=50% bottom=-32px transform=translateX(-50%) font-size=0.78rem font-weight=900 color=rgba(0,0,0,0.48) white-space=nowrap @max-width=680px@bottom=-28px @max-width=680px@font-size=0.7rem">C5</span>
+          </div>
+          <div style="left: 75%" class="position=absolute top=50% w=3 h=28 border-radius=999px bg=rgba(0,0,0,0.18) transform=translate(-50%,-50%)">
+            <span class="position=absolute left=50% bottom=-32px transform=translateX(-50%) font-size=0.78rem font-weight=900 color=rgba(0,0,0,0.48) white-space=nowrap @max-width=680px@bottom=-28px @max-width=680px@font-size=0.7rem">C6</span>
+          </div>
+          <div style="left: 100%" class="position=absolute top=50% w=3 h=28 border-radius=999px bg=rgba(0,0,0,0.18) transform=translate(-50%,-50%)">
+            <span class="position=absolute left=50% bottom=-32px transform=translateX(-50%) font-size=0.78rem font-weight=900 color=rgba(0,0,0,0.48) white-space=nowrap @max-width=680px@bottom=-28px @max-width=680px@font-size=0.7rem">C7</span>
+          </div>
+        </div>
+
+        <div id="currentNote"
+          class="position=absolute top=50% left=14% d=grid place-items=center w=84 h=84 border-radius=999px bg=#ffe889 box-shadow=inset_0_0_0_3px_rgba(0,0,0,0.06),_0_16px_38px_rgba(0,0,0,0.12) font-size=2.6rem font-weight=900 transform=translate(-50%,-50%) transition=left_180ms_ease,transform_120ms_ease,background_120ms_ease pointer-events=none .playing/transform=translate(-50%,-50%)_scale(1.06) .playing/bg=#fff2a8 @max-width=680px@w=70 @max-width=680px@h=70 @max-width=680px@font-size=2.1rem">C</div>
+      </div>
+
+      <button id="nextRangeBtn" type="button" aria-label="Move range right"
+        class="flex=0_0_auto d=grid place-items=center w=44 h=44 p=0 appearance=none border=0 border-radius=999px bg=rgba(255,255,255,0.94) box-shadow=0_10px_24px_rgba(0,0,0,0.12) color=#222 font-size=1.05rem font-weight=900 cursor=pointer transition=transform_120ms_ease,box-shadow_120ms_ease :hover/transform=scale(1.06) :active/transform=scale(0.94) @max-width=680px@w=40 @max-width=680px@h=40">▶</button>
+    </div>
+
+    <div class="d=grid grid-template-columns=1fr_auto_1fr align-items=center gap=14px_18px @max-width=680px@grid-template-columns=1fr @max-width=680px@gap=12px">
+      <div class="justify-self=start @max-width=680px@justify-self=stretch">
+        <div id="rangeReadout"
+          class="d=inline-flex align-items=center justify-content=center gap=10 p=10px_14px border-radius=999px bg=rgba(255,255,255,0.7) font-weight=800 color=#444 white-space=nowrap @max-width=680px@w=100%">C Major</div>
+      </div>
+
+      <div class="justify-self=center @max-width=680px@justify-self=stretch">
+        <button id="toggleBtn" type="button"
+          class="appearance=none border=0 border-radius=999px p=14px_30px min-width=120px font-size=1rem font-weight=800 cursor=pointer bg=#222 color=#fff box-shadow=0_10px_24px_rgba(0,0,0,0.18) @max-width=680px@w=100%">Play</button>
+      </div>
+
+      <div class="justify-self=end @max-width=680px@justify-self=stretch">
+        <label class="d=inline-flex align-items=center justify-content=center gap=10 p=10px_14px border-radius=999px bg=rgba(255,255,255,0.7) font-weight=800 color=#444 white-space=nowrap @max-width=680px@w=100%">
+          Volume
+          <input id="volume" type="range" min="0" max="100" value="10"
+            class="w=clamp(110px,22vw,170px) accent-color=#222 @max-width=680px@w=100% @max-width=680px@flex=1_1_auto @max-width=680px@min-width=0" />
+          <span id="volumeValue">10</span>
+        </label>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const notePattern = [
+      { name: 'C', semitone: 0, pos: 0 },
+      { name: 'D', semitone: 2, pos: 1 },
+      { name: 'E', semitone: 4, pos: 2 },
+      { name: 'F', semitone: 5, pos: 3 },
+      { name: 'G', semitone: 7, pos: 4 },
+      { name: 'A', semitone: 9, pos: 5 },
+      { name: 'B', semitone: 11, pos: 6 },
+      { name: 'C', semitone: 12, pos: 7 },
+      { name: 'B', semitone: 11, pos: 6 },
+      { name: 'A', semitone: 9, pos: 5 },
+      { name: 'G', semitone: 7, pos: 4 },
+      { name: 'F', semitone: 5, pos: 3 },
+      { name: 'E', semitone: 4, pos: 2 },
+      { name: 'D', semitone: 2, pos: 1 }
+    ];
+
+    // Full draggable scale: C3 through C7. Visible/default window: C4 through C5.
+    const LOWEST_START_SEMITONE = 0;   // C3
+    const HIGHEST_END_SEMITONE = 48;   // C7
+    const RANGE_SIZE_SEMITONES = 12;   // one octave window, C to next C
+    const DEFAULT_START_SEMITONE = 12; // C4 ~ C5
+    const MAX_START_SEMITONE = HIGHEST_END_SEMITONE - RANGE_SIZE_SEMITONES;
+    const BASE_C_FREQUENCY = 130.81;   // C3
+    const TRACK_LEFT_PERCENT = 14;
+    const TRACK_WIDTH_PERCENT = 72;
+    const BACKGROUND_WIDTH_PERCENT = TRACK_WIDTH_PERCENT * (HIGHEST_END_SEMITONE / RANGE_SIZE_SEMITONES);
+
+    let audioContext;
+    let oscillator;
+    let masterGain;
+    let index = 0;
+    let timer = null;
+    let rangeStartSemitone = 0;
+    let displayedNoteIndex = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartSemitone = 0;
+
+    const track = document.getElementById('track');
+    const backgroundScale = document.getElementById('backgroundScale');
+    const rangeReadout = document.getElementById('rangeReadout');
+    const currentNote = document.getElementById('currentNote');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const prevRangeBtn = document.getElementById('prevRangeBtn');
+    const nextRangeBtn = document.getElementById('nextRangeBtn');
+    const volumeSlider = document.getElementById('volume');
+    const volumeValue = document.getElementById('volumeValue');
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function volumeToGain(value) {
+      return Number(value) / 100;
+    }
+
+    function backgroundLeftPercent() {
+      return TRACK_LEFT_PERCENT - (rangeStartSemitone / RANGE_SIZE_SEMITONES) * TRACK_WIDTH_PERCENT;
+    }
+
+    function noteLeftPercent(note) {
+      return TRACK_LEFT_PERCENT + (note.pos / 7) * TRACK_WIDTH_PERCENT;
+    }
+
+    const chromaticNames = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+    const majorScaleNamesByRoot = [
+      ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
+      ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#', 'C#'],
+      ['D', 'E', 'F#', 'G', 'A', 'B', 'C#', 'D'],
+      ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D', 'Eb'],
+      ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#', 'E'],
+      ['F', 'G', 'A', 'Bb', 'C', 'D', 'E', 'F'],
+      ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'E#', 'F#'],
+      ['G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G'],
+      ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G', 'Ab'],
+      ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#', 'A'],
+      ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A', 'Bb'],
+      ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#', 'B']
+    ];
+
+    function normalizeSemitone(semitone) {
+      return ((semitone % 12) + 12) % 12;
+    }
+
+    function noteNameWithOctave(semitoneFromC3) {
+      const name = chromaticNames[normalizeSemitone(semitoneFromC3)];
+      const octave = 3 + Math.floor(semitoneFromC3 / 12);
+      return `${name}${octave}`;
+    }
+
+    function rangeLabel(semitone) {
+      const keyName = chromaticNames[normalizeSemitone(semitone)];
+      return `${keyName} Major · ${noteNameWithOctave(semitone)} – ${noteNameWithOctave(semitone + RANGE_SIZE_SEMITONES)}`;
+    }
+
+    function displayNoteName(note) {
+      const root = normalizeSemitone(rangeStartSemitone);
+      return majorScaleNamesByRoot[root][note.pos];
+    }
+
+    function getFrequency(note) {
+      return BASE_C_FREQUENCY * Math.pow(2, (rangeStartSemitone + note.semitone) / 12);
+    }
+
+    function setRangeStart(semitone, updateSound = true) {
+      rangeStartSemitone = clamp(Math.round(semitone), LOWEST_START_SEMITONE, MAX_START_SEMITONE);
+      backgroundScale.style.left = `${backgroundLeftPercent()}%`;
+      backgroundScale.style.width = `${BACKGROUND_WIDTH_PERCENT}%`;
+      rangeReadout.textContent = rangeLabel(rangeStartSemitone);
+
+      const displayedNote = notePattern[displayedNoteIndex];
+      currentNote.textContent = displayNoteName(displayedNote);
+      currentNote.style.left = `${noteLeftPercent(displayedNote)}%`;
+
+      if (updateSound && timer && oscillator && audioContext) {
+        const now = audioContext.currentTime;
+        oscillator.frequency.cancelScheduledValues(now);
+        oscillator.frequency.setTargetAtTime(getFrequency(displayedNote), now, 0.035);
+      }
+    }
+
+    function dragDeltaToSemitone(event) {
+      const rect = track.getBoundingClientRect();
+      const playableWidth = rect.width * (TRACK_WIDTH_PERCENT / 100);
+      const draggedSemitones = -((event.clientX - dragStartX) / playableWidth) * RANGE_SIZE_SEMITONES;
+      return dragStartSemitone + draggedSemitones;
+    }
+
+    function moveRangeBy(stepSemitones) {
+      const nextStart = clamp(
+        Math.round((rangeStartSemitone + stepSemitones) / RANGE_SIZE_SEMITONES) * RANGE_SIZE_SEMITONES,
+        LOWEST_START_SEMITONE,
+        MAX_START_SEMITONE
+      );
+      setRangeStart(nextStart);
+    }
+
+    function beginDrag(event) {
+      isDragging = true;
+      dragStartX = event.clientX;
+      dragStartSemitone = rangeStartSemitone;
+      track.setPointerCapture(event.pointerId);
+    }
+
+    function moveDrag(event) {
+      if (!isDragging) return;
+      setRangeStart(dragDeltaToSemitone(event));
+    }
+
+    function endDrag(event) {
+      if (!isDragging) return;
+      isDragging = false;
+      if (track.hasPointerCapture(event.pointerId)) {
+        track.releasePointerCapture(event.pointerId);
+      }
+    }
+
+    function setupAudio() {
+      if (audioContext) return;
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      oscillator = audioContext.createOscillator();
+      masterGain = audioContext.createGain();
+
+      oscillator.type = 'sine';
+      oscillator.frequency.value = getFrequency(notePattern[0]);
+      masterGain.gain.value = 0;
+
+      oscillator.connect(masterGain);
+      masterGain.connect(audioContext.destination);
+      oscillator.start();
+    }
+
+    function setVolume(value, smooth = true) {
+      volumeValue.textContent = value;
+      if (!masterGain || !audioContext) return;
+      const now = audioContext.currentTime;
+      const gain = volumeToGain(value);
+      masterGain.gain.cancelScheduledValues(now);
+      if (smooth) {
+        masterGain.gain.setTargetAtTime(gain, now, 0.03);
+      } else {
+        masterGain.gain.setValueAtTime(gain, now);
+      }
+    }
+
+    function updateUI(noteIndex) {
+      displayedNoteIndex = noteIndex;
+      const note = notePattern[noteIndex];
+      currentNote.textContent = displayNoteName(note);
+      currentNote.style.left = `${noteLeftPercent(note)}%`;
+      currentNote.classList.add('playing');
+      setTimeout(() => currentNote.classList.remove('playing'), 120);
+    }
+
+    function playCurrentNote() {
+      const note = notePattern[index];
+      const now = audioContext.currentTime;
+
+      updateUI(index);
+      oscillator.frequency.cancelScheduledValues(now);
+      oscillator.frequency.setTargetAtTime(getFrequency(note), now, 0.035);
+
+      index = (index + 1) % notePattern.length;
+    }
+
+    function startLoop() {
+      setupAudio();
+      if (audioContext.state === 'suspended') audioContext.resume();
+      if (timer) return;
+
+      setVolume(volumeSlider.value);
+      playCurrentNote();
+      timer = setInterval(playCurrentNote, 1000);
+      toggleBtn.textContent = 'Stop';
+    }
+
+    function stopLoop() {
+      clearInterval(timer);
+      timer = null;
+      toggleBtn.textContent = 'Play';
+      if (masterGain && audioContext) {
+        const now = audioContext.currentTime;
+        masterGain.gain.cancelScheduledValues(now);
+        masterGain.gain.setTargetAtTime(0, now, 0.04);
+      }
+    }
+
+    function toggleLoop() {
+      if (timer) {
+        stopLoop();
+      } else {
+        startLoop();
+      }
+    }
+
+    function stopButtonInteraction(event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
+    volumeSlider.addEventListener('input', (event) => setVolume(event.target.value));
+    toggleBtn.addEventListener('click', toggleLoop);
+    prevRangeBtn.addEventListener('pointerdown', stopButtonInteraction);
+    prevRangeBtn.addEventListener('mousedown', stopButtonInteraction);
+    prevRangeBtn.addEventListener('click', (event) => {
+      stopButtonInteraction(event);
+      moveRangeBy(-RANGE_SIZE_SEMITONES);
+    });
+    nextRangeBtn.addEventListener('pointerdown', stopButtonInteraction);
+    nextRangeBtn.addEventListener('mousedown', stopButtonInteraction);
+    nextRangeBtn.addEventListener('click', (event) => {
+      stopButtonInteraction(event);
+      moveRangeBy(RANGE_SIZE_SEMITONES);
+    });
+    track.addEventListener('pointerdown', beginDrag);
+    track.addEventListener('pointermove', moveDrag);
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+
+    setRangeStart(DEFAULT_START_SEMITONE, false);
+  </script>
+</body>
+</html>
